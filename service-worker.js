@@ -5,11 +5,11 @@ const assets = [
   "/style.css",
   "/script.js",
   "/manifest.json",
-  "/image/icon-192x192.png",
-  "/image/image.jpeg",
-  "/image/certificate 1.png",
-  "/image/certificate 2.png",
-  "/image/certificate 3.png"
+  "/icon-192x192.png",
+  "/image.jpeg",
+  "/certificate 1.png",
+  "/certificate 2.png",
+  "/certificate 3.png"
 ];
 
 self.addEventListener('install', function(event) {
