@@ -5,35 +5,23 @@ const assets = [
   "/style.css",
   "/script.js",
   "/manifest.json",
-  "/icon-192x192.png",
-  "/image.jpeg",
-  "/certificate 1.png",
-  "/certificate 2.png",
-  "/certificate 3.png"
+  "/image/icon-192x192.png",
+  "/image/image.jpeg",
+  "/image/certificate 1.png",
+  "/image/certificate 2.png",
+  "/image/certificate 3.png"
 ];
 
+// Install Service Worker dan caching file-file yang penting
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      console.log('Cache dibuka dan file di-cache');
-      return cache.addAll(assets);
-    })
+    caches.open(CACHE_NAME) // Gunakan CACHE_NAME yang benar
+      .then(function(cache) {
+        console.log('Opened cache');
+        return cache.addAll(assets); // Ganti urlsToCache dengan assets
+      })
   );
 });
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/service-worker.js')  // Pastikan path benar
-      .then(function(registration) {
-        console.log('Service Worker berhasil didaftarkan', registration);
-      })
-      .catch(function(error) {
-        console.error('Pendaftaran Service Worker gagal:', error);
-      });
-  });
-}
-
-
 
 // Activate Service Worker
 self.addEventListener('activate', function(event) {
@@ -72,7 +60,7 @@ self.addEventListener('message', event => {
     const title = 'Hallo!';
     const options = {
       body: 'Selamat Datang di Web Portfolio Tuti. Terima kasih telah mengunjungi!',
-      icon: '/icon-192x192.png'
+      icon: '/image/icon-192x192.png'
     };
 
     if (Notification.permission === 'granted') {
@@ -87,6 +75,6 @@ self.addEventListener('message', event => {
 self.addEventListener('notificationclick', event => {
   event.notification.close(); // Menutup notifikasi saat diklik
   event.waitUntil(
-    clients.openWindow('https://srihastut.github.io/protofolio/') // URL yang akan dibuka saat notifikasi diklik
+    clients.openWindow('https://github.com/srihastut') // URL yang akan dibuka saat notifikasi diklik
   );
 });
