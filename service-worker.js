@@ -20,6 +20,7 @@ self.addEventListener('install', function(event) {
     })
   );
 });
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/service-worker.js')  // Pastikan path benar
@@ -31,6 +32,7 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
 
 
 // Activate Service Worker
