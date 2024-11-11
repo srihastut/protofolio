@@ -70,7 +70,7 @@ self.addEventListener('message', event => {
     const title = 'Hallo!';
     const options = {
       body: 'Selamat Datang di Web Portfolio Tuti. Terima kasih telah mengunjungi!',
-      icon: '/image/icon-192x192.png'
+      icon: '/icon-192x192.png'
     };
 
     if (Notification.permission === 'granted') {
