@@ -12,16 +12,26 @@ const assets = [
   "/image/certificate 3.png"
 ];
 
-// Install Service Worker dan caching file-file yang penting
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME) // Gunakan CACHE_NAME yang benar
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(assets); // Ganti urlsToCache dengan assets
-      })
+    caches.open(CACHE_NAME).then(function(cache) {
+      console.log('Cache dibuka dan file di-cache');
+      return cache.addAll(assets);
+    })
   );
 });
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')  // Pastikan path benar
+      .then(function(registration) {
+        console.log('Service Worker berhasil didaftarkan', registration);
+      })
+      .catch(function(error) {
+        console.error('Pendaftaran Service Worker gagal:', error);
+      });
+  });
+}
+
 
 // Activate Service Worker
 self.addEventListener('activate', function(event) {
