@@ -15,19 +15,15 @@ window.addEventListener("beforeinstallprompt", (e) => {
 
 const installButton = document.getElementById("installButton");
 
-installButton.addEventListener("click", async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === "accepted") {
-      console.log("User accepted the install prompt");
-    } else {
-      console.log("User dismissed the install prompt");
-    }
-    deferredPrompt = null;
-    installButton.style.display = "none"; // Sembunyikan tombol setelah prompt ditampilkan
-  }
-});
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+          console.log('Service Worker registered with scope:', registration.scope);
+      }).catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+      });
+}
+
 
 
 window.onscroll = () => {
