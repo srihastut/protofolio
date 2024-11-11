@@ -75,6 +75,6 @@ self.addEventListener('message', event => {
 self.addEventListener('notificationclick', event => {
   event.notification.close(); // Menutup notifikasi saat diklik
   event.waitUntil(
-    clients.openWindow('https://github.com/srihastut') // URL yang akan dibuka saat notifikasi diklik
+    clients.openWindow('https://srihastut.github.io/protofolio/') // URL yang akan dibuka saat notifikasi diklik
   );
 });
